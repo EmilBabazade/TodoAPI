@@ -7,6 +7,7 @@ using Swashbuckle.AspNetCore.Filters;
 using System.Text;
 using TodoAPI.Data;
 using TodoAPI.Helpers;
+using TodoAPI.Services.jwt;
 
 namespace TodoAPI.Extensions
 {
@@ -16,6 +17,7 @@ namespace TodoAPI.Extensions
         {
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddMediatR(typeof(Program));
+            services.AddScoped<IJWTService, JWTService>();
             services.AddDbContext<DataContext>(options =>
             {
                 options.UseSqlite(config.GetConnectionString("DefaultConnection"));
