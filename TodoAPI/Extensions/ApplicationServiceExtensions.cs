@@ -1,4 +1,6 @@
 ﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
+using TodoAPI.Data;
 using TodoAPI.Helpers;
 
 namespace TodoAPI.Extensions
@@ -9,6 +11,10 @@ namespace TodoAPI.Extensions
         {
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddMediatR(typeof(Program));
+            services.AddDbContext<DataContext>(options =>
+            {
+                options.UseSqlite(config.GetConnectionString("DefaultConnection"));
+            });
             return services;
         }
     }
