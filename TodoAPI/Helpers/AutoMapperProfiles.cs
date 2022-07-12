@@ -6,7 +6,6 @@ namespace TodoAPI.Helpers
     {
         public AutoMapperProfiles()
         {
-
         }
     }
 }

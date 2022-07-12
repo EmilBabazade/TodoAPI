@@ -21,5 +21,11 @@ namespace TodoAPI.Todo.Users
             await _mediator.Send(new RegisterCommand(registerDTO));
             return Ok();
         }
+
+        [HttpPost("Login")]
+        public async Task<ActionResult<UserDTO>> Login(LoginDTO loginDTO)
+        {
+            return Ok(await _mediator.Send(new LoginCommand(loginDTO)));
+        }
     }
 }
