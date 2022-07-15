@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using TodoAPI.Todo.Todo;
 
 namespace TodoAPI.Todo.Users
 {
@@ -12,5 +13,6 @@ namespace TodoAPI.Todo.Users
         public byte[] PasswordSalt { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime? UpdatedAt { get; set; }
+        public virtual List<TodoEntity> Todos { get; set; }
     }
 }

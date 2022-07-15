@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TodoAPI.Todo.Todo;
 using TodoAPI.Todo.Users;
 
 namespace TodoAPI.Data
@@ -23,5 +24,6 @@ namespace TodoAPI.Data
         }
 
         public virtual DbSet<UserEntity> Users { get; set; }
+        public virtual DbSet<TodoEntity> Todos { get; set; }
     }
 }
