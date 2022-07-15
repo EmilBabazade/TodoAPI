@@ -43,7 +43,34 @@ namespace TodoTest.Handlers.Users
 
         // login with unexisting user email should throw TodoAPI.Errors.Exceptions.BadRequestException
         [Test]
-        public async Task AddingNewUserWithExistingEmailShouldThrowException()
+        public async Task LoginWithUnexistingEmailThrowsBadRequest()
+        {
+            // Arrange
+            var loginDTO = new LoginDTO
+            {
+                Email = "emil@babazade.com",
+                Password = _password
+            };
+            string? type = "";
+
+            // Act
+            try
+            {
+                await _handler.Handle(new LoginCommand(loginDTO), new CancellationToken());
+            }
+            catch (Exception ex)
+            {
+                type = ex.GetType()?.FullName;
+            }
+
+
+            // Assert
+            type.Should().Be("TodoAPI.Errors.Exceptions+BadRequestException");
+        }
+
+        // login with incorrect password should throw TodoAPI.Errors.Exceptions.BadRequestException
+        [Test]
+        public async Task LoginWithIncorrectPasswordThrowsBadRequestException()
         {
             // Arrange
             var loginDTO = new LoginDTO
@@ -67,8 +94,6 @@ namespace TodoTest.Handlers.Users
             // Assert
             type.Should().Be("TodoAPI.Errors.Exceptions+BadRequestException");
         }
-
-        // login with incorrect password should throw TodoAPI.Errors.Exceptions.BadRequestException
 
         // login with correct password and email should login
     }
