@@ -1,12 +1,13 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using TodoAPI.Helpers;
 using TodoAPI.Todo.Users.DTOs;
 
 namespace TodoAPI.Todo.Users
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class UsersController : BaseApiController
     {
         private readonly IMediator _mediator;
 

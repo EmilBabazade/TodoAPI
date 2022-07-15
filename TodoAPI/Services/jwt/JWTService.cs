@@ -1,8 +1,8 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
+﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using Microsoft.IdentityModel.Tokens;
 using TodoAPI.Todo.Users;
 
 namespace TodoAPI.Services.jwt
@@ -26,7 +26,8 @@ namespace TodoAPI.Services.jwt
         {
             List<Claim> claims = new()
             {
-                new Claim(ClaimTypes.Email, user.Email)
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
             };
 
             SymmetricSecurityKey? key = new(Encoding.UTF8.GetBytes(_configuration.GetSection("jwt").Value));

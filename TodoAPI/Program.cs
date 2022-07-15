@@ -12,6 +12,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddAuthentication(builder.Configuration);
 builder.Services.AddSwagger(builder.Configuration);
+builder.Services.AddHttpContextAccessor();
 
 WebApplication? app = builder.Build();
 
@@ -26,6 +27,7 @@ app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

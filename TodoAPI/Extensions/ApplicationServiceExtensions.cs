@@ -1,10 +1,10 @@
-﻿using MediatR;
+﻿using System.Text;
+using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
-using System.Text;
 using TodoAPI.Data;
 using TodoAPI.Helpers;
 using TodoAPI.Services.jwt;
