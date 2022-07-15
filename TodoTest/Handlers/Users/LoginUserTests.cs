@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using NUnit.Framework;
 using TodoAPI.Services.jwt;
@@ -95,6 +96,26 @@ namespace TodoTest.Handlers.Users
             type.Should().Be("TodoAPI.Errors.Exceptions+BadRequestException");
         }
 
-        // login with correct password and email should login
+        // login with correct password and email should return id, name, email, and token
+        [Test]
+        public async Task LoginWithCorrectCredsShouldLogin()
+        {
+            // Arrange
+            var loginDTO = new LoginDTO
+            {
+                Email = _email,
+                Password = _password
+            };
+
+            // Act
+            UserDTO res = await _handler.Handle(new LoginCommand(loginDTO), new CancellationToken());
+            UserEntity user = await _dataContext.Users.SingleOrDefaultAsync(u => u.Email == _email);
+
+            // Assert
+            user.Should().NotBe(null);
+            res.Email.Should().Be(_email);
+            res.Id.Should().Be(user.Id);
+            res.Token.Should().NotBe(null);
+        }
     }
 }
