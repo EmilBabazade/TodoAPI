@@ -1,10 +1,10 @@
-﻿using FluentAssertions;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using NUnit.Framework;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 using TodoAPI.Services.jwt;
 using TodoAPI.Todo.Users;
 using TodoAPI.Todo.Users.DTOs;
