@@ -6,8 +6,10 @@ using TodoAPI.Todo.Todo.DTOs;
 
 namespace TodoAPI.Todo.Todo
 {
+    [Route("api/[controller]")]
+    [ApiController]
     [Authorize]
-    public class TodoController : BaseApiController
+    public class TodoController : ControllerBase
     {
         private readonly IMediator _mediator;
         public TodoController(IMediator mediator)
@@ -19,6 +21,12 @@ namespace TodoAPI.Todo.Todo
         public async Task<ActionResult<TodoDTO>> AddTodo(AddTodoDTO addTodoDTO)
         {
             return Ok(await _mediator.Send(new AddTodoCommand(addTodoDTO)));
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<TodoDTO>>> GetTodos(DateTime? dueDate, string? order)
+        {
+            return Ok(await _mediator.Send(new GetTodosQueries(dueDate, order)));
         }
     }
 }

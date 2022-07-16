@@ -7,7 +7,7 @@ namespace TodoAPI.Todo.Users
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : BaseApiController
+    public class UsersController : ControllerBase
     {
         private readonly IMediator _mediator;
 
