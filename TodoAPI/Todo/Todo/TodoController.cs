@@ -18,7 +18,7 @@ namespace TodoAPI.Todo.Todo
         }
 
         [HttpPost]
-        public async Task<ActionResult<TodoDTO>> AddTodo(AddTodoDTO addTodoDTO)
+        public async Task<ActionResult<TodoDTO>> AddTodo([FromBody] AddTodoDTO addTodoDTO)
         {
             return Ok(await _mediator.Send(new AddTodoCommand(addTodoDTO)));
         }
@@ -34,6 +34,12 @@ namespace TodoAPI.Todo.Todo
         {
             await _mediator.Send(new DeleteTodoCommand(id));
             return NoContent();
+        }
+
+        [HttpPatch("{id}")]
+        public async Task<ActionResult<TodoDTO>> EditTodo(int id, [FromBody] EditTodoDTO editTodoDTO)
+        {
+            return Ok(await _mediator.Send(new EditTodoCommand(id, editTodoDTO)));
         }
     }
 }
