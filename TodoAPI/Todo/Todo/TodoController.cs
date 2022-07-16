@@ -28,5 +28,12 @@ namespace TodoAPI.Todo.Todo
         {
             return Ok(await _mediator.Send(new GetTodosQueries(dueDate, order)));
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteTodo(int id)
+        {
+            await _mediator.Send(new DeleteTodoCommand(id));
+            return NoContent();
+        }
     }
 }

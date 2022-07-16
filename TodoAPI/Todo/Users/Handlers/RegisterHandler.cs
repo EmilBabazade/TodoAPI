@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using TodoAPI.Data;
+using TodoAPI.Errors;
 using TodoAPI.Services.jwt;
-using static TodoAPI.Errors.Exceptions;
 
 namespace TodoAPI.Todo.Users.Handlers
 {

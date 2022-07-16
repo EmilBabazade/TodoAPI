@@ -1,7 +1,6 @@
 ﻿using System.Net;
 using System.Text.Json;
 using TodoAPI.Errors;
-using static TodoAPI.Errors.Exceptions;
 
 namespace TodoAPI.Middlewares
 {
@@ -55,6 +54,10 @@ namespace TodoAPI.Middlewares
             catch (BadRequestException ex)
             {
                 await Respond(context, (int)HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+            catch (ForbiddenException ex)
+            {
+                await Respond(context, (int)HttpStatusCode.Forbidden, ex.Message, ex);
             }
             catch (Exception ex)
             {

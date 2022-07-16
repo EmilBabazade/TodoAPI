@@ -2,9 +2,9 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using TodoAPI.Data;
+using TodoAPI.Errors;
 using TodoAPI.Services.jwt;
 using TodoAPI.Todo.Users.DTOs;
-using static TodoAPI.Errors.Exceptions;
 
 namespace TodoAPI.Todo.Users.Handlers
 {
