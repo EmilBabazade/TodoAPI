@@ -8,7 +8,7 @@ using TodoAPI.Todo.Todo.DTOs;
 
 namespace TodoAPI.Todo.Todo.Handlers
 {
-    public class GetTodosHandler : IRequestHandler<GetTodosQueries, IEnumerable<TodoDTO>>
+    public class GetTodosHandler : IRequestHandler<GetTodosQuery, IEnumerable<TodoDTO>>
     {
         private readonly IMapper _mapper;
         private readonly DataContext _dataContext;
@@ -19,7 +19,7 @@ namespace TodoAPI.Todo.Todo.Handlers
             _mapper = mapper;
             _httpContext = httpContextAccessor.HttpContext;
         }
-        public async Task<IEnumerable<TodoDTO>> Handle(GetTodosQueries request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<TodoDTO>> Handle(GetTodosQuery request, CancellationToken cancellationToken)
         {
             IQueryable<TodoEntity> query = await TodosForUser();
             query = OrderById(request, query);
@@ -34,7 +34,7 @@ namespace TodoAPI.Todo.Todo.Handlers
             return query;
         }
 
-        private static IQueryable<TodoEntity> FilterByDate(GetTodosQueries request, IQueryable<TodoEntity> query)
+        private static IQueryable<TodoEntity> FilterByDate(GetTodosQuery request, IQueryable<TodoEntity> query)
         {
             if (request.Date != null)
             {
@@ -44,7 +44,7 @@ namespace TodoAPI.Todo.Todo.Handlers
             return query;
         }
 
-        private static IQueryable<TodoEntity> OrderById(GetTodosQueries request, IQueryable<TodoEntity> query)
+        private static IQueryable<TodoEntity> OrderById(GetTodosQuery request, IQueryable<TodoEntity> query)
         {
             query = request.Order switch
             {

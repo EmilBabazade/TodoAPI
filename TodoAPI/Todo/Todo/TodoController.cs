@@ -26,7 +26,7 @@ namespace TodoAPI.Todo.Todo
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TodoDTO>>> GetTodos(DateTime? dueDate, string? order)
         {
-            return Ok(await _mediator.Send(new GetTodosQueries(dueDate, order)));
+            return Ok(await _mediator.Send(new GetTodosQuery(dueDate, order)));
         }
 
         [HttpDelete("{id}")]
@@ -40,6 +40,12 @@ namespace TodoAPI.Todo.Todo
         public async Task<ActionResult<TodoDTO>> EditTodo(int id, [FromBody] EditTodoDTO editTodoDTO)
         {
             return Ok(await _mediator.Send(new EditTodoCommand(id, editTodoDTO)));
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<TodoDTO>> GetTodo(int id)
+        {
+            return Ok(await _mediator.Send(new GetTodoQuery(id)));
         }
     }
 }
