@@ -20,7 +20,7 @@ namespace TodoTest.Handlers.Users
         public void SetUp()
         {
             IConfigurationRoot? config = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
+                .AddJsonFile("testsettings.json")
                  .AddEnvironmentVariables()
                  .Build();
             _handler = new RegisterHandler(_dataContext, new JWTService(config));
@@ -74,7 +74,7 @@ namespace TodoTest.Handlers.Users
 
 
             // Assert
-            type.Should().Be("TodoAPI.Errors.Exceptions+BadRequestException");
+            type.Should().Be("TodoAPI.Errors.BadRequestException");
         }
     }
 }

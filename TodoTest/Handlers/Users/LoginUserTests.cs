@@ -23,7 +23,7 @@ namespace TodoTest.Handlers.Users
         public async Task SetUp()
         {
             IConfigurationRoot? config = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
+                .AddJsonFile("testsettings.json")
                  .AddEnvironmentVariables()
                  .Build();
             _handler = new LoginHandler(_dataContext, _mapper, new JWTService(config));
@@ -66,7 +66,7 @@ namespace TodoTest.Handlers.Users
 
 
             // Assert
-            type.Should().Be("TodoAPI.Errors.Exceptions+BadRequestException");
+            type.Should().Be("TodoAPI.Errors.BadRequestException");
         }
 
         // login with incorrect password should throw TodoAPI.Errors.Exceptions.BadRequestException
@@ -93,7 +93,7 @@ namespace TodoTest.Handlers.Users
 
 
             // Assert
-            type.Should().Be("TodoAPI.Errors.Exceptions+BadRequestException");
+            type.Should().Be("TodoAPI.Errors.BadRequestException");
         }
 
         // login with correct password and email should return id, name, email, and token
