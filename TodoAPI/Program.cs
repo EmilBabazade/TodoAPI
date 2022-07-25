@@ -20,14 +20,6 @@ WebApplication? app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.UseCors(policy =>
-                policy
-                    .AllowAnyHeader()
-                    .AllowCredentials()
-                    .AllowAnyMethod()
-                    .WithOrigins("http://localhost:4200")
-            );
-
 app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();

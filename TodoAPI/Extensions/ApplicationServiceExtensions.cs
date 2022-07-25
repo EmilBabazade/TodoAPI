@@ -1,10 +1,10 @@
-﻿using System.Text;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
+using System.Text;
 using TodoAPI.Data;
 using TodoAPI.Helpers;
 using TodoAPI.Services.jwt;
@@ -16,7 +16,7 @@ namespace TodoAPI.Extensions
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration config)
         {
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
-            services.AddMediatR(typeof(Program));
+            services.AddMediatR(typeof(Program).Assembly);
             services.AddScoped<IJWTService, JWTService>();
             services.AddDbContext<DataContext>(options =>
             {
