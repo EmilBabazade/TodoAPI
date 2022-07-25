@@ -16,7 +16,7 @@ namespace TodoAPI.Extensions
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration config)
         {
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
-            services.AddMediatR(typeof(Program).Assembly);
+            services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<IJWTService, JWTService>();
             services.AddDbContext<DataContext>(options =>
             {
