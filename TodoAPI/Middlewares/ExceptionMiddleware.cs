@@ -61,7 +61,8 @@ namespace TodoAPI.Middlewares
             }
             catch (Exception ex)
             {
-                string? stackTrace = _env.IsDevelopment() ? ex.StackTrace?.ToString() : null;
+                //string? stackTrace = _env.IsDevelopment() ? ex.StackTrace?.ToString() : null;
+                string? stackTrace = ex.StackTrace?.ToString();
                 await Respond(context, (int)HttpStatusCode.InternalServerError, ex.Message, ex, stackTrace);
             }
         }
