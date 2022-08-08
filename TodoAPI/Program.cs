@@ -40,4 +40,10 @@ app.UseStaticFiles();
 app.MapControllers();
 app.MapFallbackToController("Index", "Fallback");
 
+// make sure db is created
+using IServiceScope scope = app.Services.CreateScope();
+IServiceProvider services = scope.ServiceProvider;
+DataContext context = services.GetRequiredService<DataContext>();
+await context.Database.MigrateAsync();
+
 app.Run();
